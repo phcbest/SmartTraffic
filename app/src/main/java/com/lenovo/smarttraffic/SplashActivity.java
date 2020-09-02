@@ -25,7 +25,6 @@ public class SplashActivity extends AppCompatActivity {
     private ImageView splashImage;
     private ViewPager splashViewpager;
     private ArrayList<Integer> viewImage;
-    private LinearLayout adapterLinear;
 
 
     @Override
@@ -51,8 +50,7 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences firstEnter = getSharedPreferences(firstEnterKey, MODE_PRIVATE);
         String firstEnterValue = firstEnter.getString(firstEnterKey, null);
         //!=null就是不是第一次进入，直接进入新页面
-        //TODO:这里为了暂时方便测试将！=改为了==
-        if (firstEnterValue == null) {
+        if (firstEnterValue != null) {
             startActivity(intent);
             finish();
         } else {
@@ -68,30 +66,9 @@ public class SplashActivity extends AppCompatActivity {
 
     private void initEvent() {
 
-        splashViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                for (int i = 0; i < viewImage.size(); i++) {
-                    ImageView imageView = new ImageView(SplashActivity.this);
-                    imageView.setImageResource(R.drawable.select_point_no);
-                    if (position == i) {
-                        imageView.setImageResource(R.drawable.select_point);
-                    }
-                    adapterLinear.addView(imageView);
-                }
-            }
 
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
     }
+
 
     private void showViewPager() {
         //1s后将该页面的图片隐藏起来，然后显示引导的布局
@@ -102,11 +79,12 @@ public class SplashActivity extends AppCompatActivity {
         viewImage.add(R.drawable.splash);
         viewImage.add(R.drawable.splash);
         splashViewpager.setAdapter(new SplashViewPageAdapter(viewImage));
+
+        splashViewpager.setCurrentItem(0);
     }
 
     private void initView() {
         splashImage = (ImageView) findViewById(R.id.splash_image);
         splashViewpager = (ViewPager) findViewById(R.id.splash_viewpager);
-        adapterLinear = (LinearLayout) findViewById(R.id.adapter_linear);
     }
 }

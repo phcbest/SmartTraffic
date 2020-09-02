@@ -25,6 +25,10 @@
             android:id="@+id/item_3"
             android:icon="@drawable/ic_app_management_gray_24"
             android:title="@string/item3"/>
+        <item
+            android:id="@+id/smartTraffic"
+            android:icon="@drawable/ic_account_gray_24dp"
+            android:title="@string/smartTraffic"/>
     </group>
 
     <group android:checkableBehavior="none"

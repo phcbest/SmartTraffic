@@ -20,6 +20,7 @@ import com.lenovo.smarttraffic.ui.activity.BaseActivity;
 import com.lenovo.smarttraffic.ui.activity.Item1Activity;
 import com.lenovo.smarttraffic.ui.activity.LoginActivity;
 import com.lenovo.smarttraffic.ui.activity.NetSettingActivity;
+import com.lenovo.smarttraffic.ui.activity.SmartTrafficActivity;
 import com.lenovo.smarttraffic.ui.fragment.DesignFragment;
 import com.lenovo.smarttraffic.ui.fragment.MainContentFragment;
 
@@ -30,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * @date 2019/4/11.
  * description：
  */
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
 
     private Toolbar mToolbar;
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initView();
         initData();
         if (savedInstanceState != null) {
-            loadMultipleRootFragment(R.id.container,0,mMainContent, mDesignFragment);   //使用fragmentation加载根组件
+            loadMultipleRootFragment(R.id.container, 0, mMainContent, mDesignFragment);   //使用fragmentation加载根组件
             // 恢复 recreate 前的位置
             showFragment(savedInstanceState.getInt(POSITION));
             bottom_navigation.setSelectedItemId(savedInstanceState.getInt(SELECT_ITEM));
@@ -71,19 +72,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (index) {
             case FRAGMENT_MAIN:
                 mToolbar.setTitle(R.string.title_main);
-                if (mMainContent == null){
+                if (mMainContent == null) {
                     mMainContent = MainContentFragment.getInstance();
-                    ft.add(R.id.container,mMainContent,MainContentFragment.class.getName());
-                }else {
+                    ft.add(R.id.container, mMainContent, MainContentFragment.class.getName());
+                } else {
                     ft.show(mMainContent);
                 }
                 break;
             case FRAGMENT_DESIGN:
                 mToolbar.setTitle(R.string.creative_design);
-                if (mDesignFragment == null){
+                if (mDesignFragment == null) {
                     mDesignFragment = DesignFragment.getInstance();
-                    ft.add(R.id.container,mDesignFragment,DesignFragment.class.getName());
-                }else {
+                    ft.add(R.id.container, mDesignFragment, DesignFragment.class.getName());
+                } else {
                     ft.show(mDesignFragment);
                 }
                 break;
@@ -120,7 +121,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toggle.syncState();
         mDrawer.addDrawerListener(toggle);
         bottom_navigation.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.action_main:
                     showFragment(FRAGMENT_MAIN);
                     break;
@@ -159,7 +160,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         /*设置选中item事件*/
         int id = item.getItemId();
         String string = null;
-        switch (id){
+        switch (id) {
             case R.id.nav_account:
                 string = "个人";
                 break;
@@ -173,8 +174,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.item_3:
                 string = "item3";
                 break;
+            case R.id.smartTraffic:
+                string = "智慧交通";
+                //进入智慧农业界面
+                showSmartTrafficActivity();
+                break;
             case R.id.nav_setting:
-                //进行dialog显示
+                //进入网络设置
                 showSettingNetActivity();
                 string = "设置";
                 break;
@@ -183,10 +189,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
         }
         if (!TextUtils.isEmpty(string))
-        Toast.makeText(InitApp.getInstance(), "你点击了"+"\""+string+"\"", Toast.LENGTH_SHORT).show();
+            Toast.makeText(InitApp.getInstance(), "你点击了" + "\"" + string + "\"", Toast.LENGTH_SHORT).show();
 //        mDrawer.closeDrawer(GravityCompat.START);
         mDrawer.closeDrawers();
         return true;
+    }
+
+    private void showSmartTrafficActivity() {
+        Intent intent = new Intent(this, SmartTrafficActivity.class);
+        startActivity(intent);
     }
 
     private void showSettingNetActivity() {
@@ -196,7 +207,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.ivAvatar){    /*点击头像跳转登录界面*/
+        if (view.getId() == R.id.ivAvatar) {    /*点击头像跳转登录界面*/
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }

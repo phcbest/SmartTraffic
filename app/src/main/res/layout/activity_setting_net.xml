@@ -20,17 +20,17 @@
 
         <EditText
             android:lines="1"
-            android:inputType="text"
-            android:digits="1234567890"
+            android:inputType="number"
             android:id="@+id/edit_service_address1"
+            android:nextFocusDown="@id/edit_service_address2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1" />
         <EditText
             android:lines="1"
-            android:inputType="text"
-            android:digits="1234567890"
+            android:inputType="number"
+            android:nextFocusDown="@id/edit_service_address3"
             android:id="@+id/edit_service_address2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -38,8 +38,8 @@
             android:layout_weight="1" />
         <EditText
             android:lines="1"
-            android:inputType="text"
-            android:digits="1234567890"
+            android:inputType="number"
+            android:nextFocusDown="@id/edit_service_address4"
             android:id="@+id/edit_service_address3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -47,8 +47,8 @@
             android:layout_weight="1" />
         <EditText
             android:lines="1"
-            android:inputType="text"
-            android:digits="1234567890"
+            android:inputType="number"
+            android:nextFocusDown="@id/edit_service_port"
             android:id="@+id/edit_service_address4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -71,8 +71,7 @@
 
         <EditText
             android:lines="1"
-            android:inputType="text"
-            android:digits="1234567890"
+            android:inputType="number"
             android:id="@+id/edit_service_port"
             android:layout_width="0dp"
             android:layout_height="match_parent"

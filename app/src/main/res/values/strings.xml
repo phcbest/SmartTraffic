@@ -115,6 +115,7 @@
     <string name="text_max_ip">255</string>
     <string name="text_max_port">65535</string>
     <string name="enterApplication">进入应用</string>
+    <string name="smartTraffic">智慧交通</string>
 
 
 </resources>

@@ -22,14 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <LinearLayout
-            android:id="@+id/adapter_linear"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:gravity="center"
-            android:orientation="horizontal" />
     </android.support.constraint.ConstraintLayout>
 
 
